@@ -97,7 +97,7 @@ public class Controller implements Initializable{
 
     }
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         Connection conn;
         try{
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library","root","");

@@ -10,9 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../fileFxml/tampilan.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../fileFxml/tampilanLogin.fxml"));
         primaryStage.setTitle("Tubes Alpro");
-        primaryStage.setScene(new Scene(root, 1280, 720));
+        Scene setScene = new Scene(root);
+        primaryStage.setScene(setScene);
         primaryStage.show();
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Des 2021 pada 11.08
+-- Waktu pembuatan: 13 Jan 2022 pada 08.14
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.4.14
 
@@ -47,6 +47,28 @@ INSERT INTO `datamahasiswa` (`id`, `nim`, `nama`, `falkultas`, `jurusan`, `alama
 (2, '2020103703111200', 'the wok', 'Ekonomi', 'sastra china', 'NY', 'NY', 'akting'),
 (3, '2020103703111201', 'john xina', 'olahraga', 'tinju dibalas tinju', 'wuhan', 'china', 'petarunx');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `type`) VALUES
+(1, 'rysal', '12345', 'Mahasiswa'),
+(2, 'admin', '12345', 'Admin'),
+(3, 'dosen', '12345', 'Dosen');
+
 --
 -- Indexes for dumped tables
 --
@@ -58,6 +80,12 @@ ALTER TABLE `datamahasiswa`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -66,6 +94,12 @@ ALTER TABLE `datamahasiswa`
 --
 ALTER TABLE `datamahasiswa`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100001;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
