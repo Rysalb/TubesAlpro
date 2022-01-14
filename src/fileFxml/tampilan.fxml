@@ -99,14 +99,8 @@
             <Image url="@../AssetIcon/icons8_delete_trash_48.png" />
          </image>
       </ImageView>
-      <TextField layoutX="853.0" layoutY="38.0" prefHeight="204.0" prefWidth="180.0" />
-      <Button layoutX="895.0" layoutY="303.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Simpan" />
-      <Button layoutX="895.0" layoutY="256.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="96.0" text="Pilih Foto" />
-      <ImageView fitHeight="187.0" fitWidth="157.0" layoutX="864.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../AssetIcon/icons8_person_48.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="btn_simpan" layoutX="895.0" layoutY="303.0" mnemonicParsing="false" onAction="#simpan_Foto" prefHeight="25.0" prefWidth="96.0" text="Simpan" />
+      <Button fx:id="btn_pilihFoto" layoutX="895.0" layoutY="256.0" mnemonicParsing="false" onAction="#uploadFoto" prefHeight="20.0" prefWidth="96.0" text="Pilih Foto" />
       <Label alignment="CENTER" layoutX="52.0" layoutY="-16.0" prefHeight="90.0" prefWidth="364.0" text="Biodata Mahasiswa">
          <font>
             <Font name="Javanese Text" size="42.0" />
@@ -120,5 +114,10 @@
             </LinearGradient>
          </textFill>
       </Label>
+      <ImageView fx:id="tfImage" fitHeight="184.0" fitWidth="205.0" layoutX="843.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../AssetIcon/icons8_person_48.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

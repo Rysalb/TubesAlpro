@@ -1,18 +1,28 @@
 package code;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
+import javax.swing.*;
 
 
 public class Controller implements Initializable{
@@ -76,6 +86,15 @@ public class Controller implements Initializable{
 
     @FXML
     private Button btnDelete;
+
+    @FXML
+    private Button btn_simpan;
+
+    @FXML
+    private Button btn_pilihFoto;
+
+    @FXML
+    private ImageView tfImage;
 
 
 
@@ -155,7 +174,7 @@ public class Controller implements Initializable{
     }
     private void updateRecord(){
         String query = "UPDATE datamahasiswa SET nim = '" + tfNim.getText() + "', nama =  '" + tfNama.getText() + "', falkultas =  '" + tfFalkultas.getText() + "', jurusan =  '" +
-                tfJurusan.getText() + "', alamat =  '" + tfAlamat.getText() + "', kota =  '" + tfKota.getText() + "', hobby =  '" + tfHobby.getText() + "' WHERE id = " + tfId.getText() + "";
+                tfJurusan.getText() + "', alamat =  '" + tfAlamat.getText() + "', kota =  '" + tfKota.getText() + "', hobby =  '" + tfHobby.getText() + "', gambar =  '" + tfImage.getImage() + "' WHERE id = " + tfId.getText() + "";
         executeQuery(query);
         showDataMahasiswa();
     }
@@ -192,6 +211,51 @@ public class Controller implements Initializable{
 
     }
 
+    FileChooser milih = new FileChooser();
+    Path lokasi = Paths.get("D:\\");
+
+    @FXML
+    void simpan_Foto(ActionEvent event) {
+        btn_simpan.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    String query = "INSERT INTO datamahasiswa VALUES (" + tfId.getText() + ",'"+ tfNim.getText() + "','" + tfNama.getText() + "','" + tfFalkultas.getText() + "','" + tfJurusan.getText() + "','" +
+                        tfAlamat.getText() + "','" + tfKota.getText() + "','" + tfHobby.getText() + "','" + tfImage.getImage() + "')";
+
+                executeQuery(query);
+                showDataMahasiswa();
+
+                    JOptionPane.showMessageDialog(null, "Data telah disimpan");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Data tidak disimpan");
+                }
+            }
+        });
+
+    }
+
+    @FXML
+    void uploadFoto(ActionEvent event) {
+        btn_pilihFoto.setOnAction(event1 -> {
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.jpg");
+            milih.getExtensionFilters().add(extFilter);
+            File file = milih.showOpenDialog(btn_pilihFoto.getParent().getScene().getWindow());
+            if(file != null){
+                tfImage.setImage(Image.impl_fromPlatformImage(file.getPath()));
+                String namaPorto = file.getName();
+                Path lokasiFilePorto = lokasi.resolve(namaPorto);
+                File writePorto = new File(String.valueOf(lokasiFilePorto));
+                try {
+                    Files.copy(file.toPath(), writePorto.toPath());
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+                tfImage.setImage(Image.impl_fromPlatformImage(file.getName()));
+            }
+        });
+
+    }
 
 
 

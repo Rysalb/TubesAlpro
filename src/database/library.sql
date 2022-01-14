@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Jan 2022 pada 08.14
+-- Waktu pembuatan: 14 Jan 2022 pada 04.56
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.4.14
 
@@ -35,17 +35,18 @@ CREATE TABLE `datamahasiswa` (
   `jurusan` varchar(90) NOT NULL,
   `alamat` varchar(90) NOT NULL,
   `kota` varchar(90) NOT NULL,
-  `hobby` varchar(90) NOT NULL
+  `hobby` varchar(90) NOT NULL,
+  `gambar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `datamahasiswa`
 --
 
-INSERT INTO `datamahasiswa` (`id`, `nim`, `nama`, `falkultas`, `jurusan`, `alamat`, `kota`, `hobby`) VALUES
-(1, '202010370311128', 'Rysa Laksana', 'Teknik', 'Informatika', 'Malang', 'Malang', 'menyelam'),
-(2, '2020103703111200', 'the wok', 'Ekonomi', 'sastra china', 'NY', 'NY', 'akting'),
-(3, '2020103703111201', 'john xina', 'olahraga', 'tinju dibalas tinju', 'wuhan', 'china', 'petarunx');
+INSERT INTO `datamahasiswa` (`id`, `nim`, `nama`, `falkultas`, `jurusan`, `alamat`, `kota`, `hobby`, `gambar`) VALUES
+(1, '202010370311128', 'Rysa Laksana', 'Teknik', 'Informatika', 'Malang', 'Malang', 'menyelam', ''),
+(2, '2020103703111200', 'the wok', 'Ekonomi', 'sastra china', 'NY', 'NY', 'akting', ''),
+(3, '2020103703111201', 'john xina', 'olahraga', 'tinju dibalas tinju', 'wuhan', 'china', 'petarunx', '');
 
 -- --------------------------------------------------------
 

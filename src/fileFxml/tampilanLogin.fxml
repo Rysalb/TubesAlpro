@@ -26,12 +26,12 @@
     <children>
         <AnchorPane prefHeight="461.0" prefWidth="721.0" GridPane.rowIndex="1">
             <children>
-                <ImageView fitHeight="500.0" fitWidth="720.0" layoutX="1.0" layoutY="-14.0">
+                <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="1.0" layoutY="-14.0">
                     <image>
                         <Image url="@../AssetIcon/background.jpg" />
                     </image>
                 </ImageView>
-                <AnchorPane fx:id="pane_login" layoutX="180.0" layoutY="82.0" prefHeight="338.0" prefWidth="361.0" style="-fx-background-color: #000000;">
+                <AnchorPane fx:id="pane_login" layoutX="460.0" layoutY="192.0" prefHeight="338.0" prefWidth="361.0" style="-fx-background-color: #000000;">
                     <children>
                         <Label layoutX="129.0" layoutY="24.0" prefHeight="54.0" prefWidth="110.0" text="Login" textFill="WHITE">
                             <font>
@@ -59,7 +59,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <HBox layoutX="180.0" layoutY="33.0" prefHeight="34.0" prefWidth="361.0" style="-fx-background-color: #000000; -fx-border-width: 2; -fx-border-color: #ffcf0d;">
+                <HBox layoutX="460.0" layoutY="143.0" prefHeight="34.0" prefWidth="361.0" style="-fx-background-color: #000000; -fx-border-width: 2; -fx-border-color: #ffcf0d;">
                     <children>
                         <Button fx:id="btn_loginShow" mnemonicParsing="false" onAction="#LoginpaneShow" prefHeight="25.0" prefWidth="203.0" style="-fx-background-color: #ffcf0d; -fx-background-radius: 90;" text="Login">
                             <HBox.margin>
@@ -73,7 +73,7 @@
                         </Button>
                     </children>
                 </HBox>
-                <AnchorPane fx:id="pane_signup" layoutX="180.0" layoutY="82.0" prefHeight="338.0" prefWidth="361.0" style="-fx-background-color: #000000;" visible="false">
+                <AnchorPane fx:id="pane_signup" layoutX="460.0" layoutY="192.0" prefHeight="338.0" prefWidth="361.0" style="-fx-background-color: #000000;" visible="false">
                     <children>
                         <Label layoutX="106.0" layoutY="21.0" prefHeight="54.0" prefWidth="158.0" text="Sign Up" textFill="WHITE">
                             <font>
