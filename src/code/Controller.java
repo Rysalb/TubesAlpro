@@ -100,6 +100,11 @@ public class Controller implements Initializable{
 
 
 
+
+
+
+
+
     @FXML
     void HandleButtonAction(ActionEvent event) {
 
@@ -170,7 +175,7 @@ public class Controller implements Initializable{
 
     private void insertRecord(){
         String query = "INSERT INTO datamahasiswa VALUES (" + tfId.getText() + ",'"+ tfNim.getText() + "','" + tfNama.getText() + "','" + tfFalkultas.getText() + "','" + tfJurusan.getText() + "','" +
-                tfAlamat.getText() + "','" + tfKota.getText() + "','" + tfHobby.getText() + "')";
+                tfAlamat.getText() + "','" + tfKota.getText() + "','" + tfHobby.getText() + "','" + idGambar.getText() + "')";
 
         executeQuery(query);
         showDataMahasiswa();
