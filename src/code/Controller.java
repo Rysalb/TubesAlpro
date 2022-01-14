@@ -13,8 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -89,9 +91,6 @@ public class Controller implements Initializable{
 
     @FXML
     private Button btnDelete;
-
-    @FXML
-    private Button btn_simpan;
 
     @FXML
     private Button btn_pilihFoto;
@@ -203,33 +202,35 @@ public class Controller implements Initializable{
 
     @FXML
     private void handleMouseAction() {
-        DataMahasiswa dataMahasiswa = tvMahasiswa.getSelectionModel().getSelectedItem();
-        tfId.setText("" +dataMahasiswa.getId());
-        tfNim.setText(dataMahasiswa.getNim());
-        tfNama.setText(dataMahasiswa.getNama());
-        tfFalkultas.setText(dataMahasiswa.getFalkultas());
-        tfJurusan.setText(dataMahasiswa.getJurusan());
-        tfAlamat.setText(dataMahasiswa.getAlamat());
-        tfKota.setText(dataMahasiswa.getKota());
-        tfHobby.setText(dataMahasiswa.getHobby());
-        //tfImage.setImage(new Image(lokasi.toURI().toString()));
-    }
+       try {
 
-    @FXML
-    void simpan_Foto() {
-        btn_simpan.setOnAction(event1 -> {
-            try {
-                String query = "INSERT INTO datamahasiswa VALUES (" + tfId.getText() + ",'"+ tfNim.getText() + "','" + tfNama.getText() + "','" + tfFalkultas.getText() + "','" + tfJurusan.getText() + "','" +
-                        tfAlamat.getText() + "','" + tfKota.getText() + "','" + tfHobby.getText() + "','" + idGambar.getText() + "')";
+           DataMahasiswa dataMahasiswa = tvMahasiswa.getSelectionModel().getSelectedItem();
+           tfId.setText("" +dataMahasiswa.getId());
+           tfNim.setText(dataMahasiswa.getNim());
+           tfNama.setText(dataMahasiswa.getNama());
+           tfFalkultas.setText(dataMahasiswa.getFalkultas());
+           tfJurusan.setText(dataMahasiswa.getJurusan());
+           tfAlamat.setText(dataMahasiswa.getAlamat());
+           tfKota.setText(dataMahasiswa.getKota());
+           tfHobby.setText(dataMahasiswa.getHobby());
 
-                executeQuery(query);
-                showDataMahasiswa();
+           Connection conn = getConnection();
+           String query = "SELECT * FROM datamahasiswa where id = " + tfId.getText();
+           Statement st = null;
+           ResultSet rs = null;
 
-                JOptionPane.showMessageDialog(null, "Data telah disimpan");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Data tidak disimpan");
-            }
-        });
+           st = conn.createStatement();
+           rs = st.executeQuery(query);
+
+           while (rs.next()) {
+               String file = String.valueOf(rs.getString("gambar"));
+               String encodeNama = file.replace(" ", "%20");
+               tfImage.setImage(new Image(encodeNama));
+           }
+       } catch (Exception e){
+           System.out.println(e);
+       }
+
 
     }
 
@@ -240,17 +241,13 @@ public class Controller implements Initializable{
             milih.getExtensionFilters().add(extFilter);
             File file = milih.showOpenDialog(btn_pilihFoto.getParent().getScene().getWindow());
             if(file != null){
-                idGambar.setText(file.getName());
+                idGambar.setText(file.toURI().toString());
                 String idGambar = file.getName();
                 Path lokasiGambar = lokasi.resolve(idGambar);
                 File writeGambar = new File(String.valueOf(lokasiGambar));
 
-                String encodeNama = idGambar.replace(" ", "%20");
-                Rectangle2D bidang = new Rectangle2D(45, 30, 250, 250);
-                tfImage.setViewport(bidang);
                 try {
                     Files.copy(file.toPath(), writeGambar.toPath());
-                    System.out.println(file);
                     tfImage.setImage(new Image(file.toURI().toString()));
 
                 } catch (Exception e){

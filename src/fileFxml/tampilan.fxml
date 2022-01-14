@@ -90,7 +90,6 @@
    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="493.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../AssetIcon/icons8_delete_trash_48.png" />
    </ImageView>
-   <Button fx:id="btn_simpan" layoutX="895.0" layoutY="303.0" mnemonicParsing="false" onAction="#simpan_Foto" prefHeight="25.0" prefWidth="96.0" text="Simpan" />
    <Button fx:id="btn_pilihFoto" layoutX="895.0" layoutY="256.0" mnemonicParsing="false" onAction="#uploadFoto" prefHeight="20.0" prefWidth="96.0" text="Pilih Foto" />
    <Label alignment="CENTER" layoutX="52.0" layoutY="-16.0" prefHeight="90.0" prefWidth="364.0" text="Biodata Mahasiswa">
       <font>
